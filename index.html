@@ -2,63 +2,61 @@
 <html lang="pt-BR" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <title>Análise Financeira - Grupo DV</title>
+  <title>Análise Financeira</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <!-- ============================================================
-        SINCRONIZAÇÃO DE TEMA EM TODAS AS PÁGINAS
+        TEMA SINCRONIZADO EM TODAS AS PÁGINAS
 ============================================================ -->
 <script>
 (function(){
-  const saved = localStorage.getItem('dv_theme');
+  const saved = localStorage.getItem("dv_theme");
   if(saved){
-    document.documentElement.setAttribute('data-theme', saved);
+    document.documentElement.setAttribute("data-theme", saved);
   } else {
-    document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.setAttribute("data-theme", "dark");
   }
 })();
 </script>
 
-<!-- ICONES -->
+<!-- Ícones -->
 <link rel="apple-touch-icon" sizes="180x180" href="https://github.com/ClenaStore/grupodv/blob/main/paste/Financeiro.png?raw=true">
 <link rel="icon" type="image/png" sizes="32x32" href="https://github.com/ClenaStore/grupodv/blob/main/paste/Financeiro.png?raw=true">
 <link rel="icon" type="image/png" sizes="16x16" href="https://github.com/ClenaStore/grupodv/blob/main/paste/Financeiro.png?raw=true">
 
 <style>
 /* ============================================================
-                    TEMA + PALETA
+                      TEMA
 ============================================================ */
 :root{
   --bg:#0b1120;
-  --surface:rgba(17,25,40,.65);
-  --card:rgba(20,25,45,.55);
+  --surface:rgba(17,25,40,.7);
+  --card:rgba(20,25,45,.5);
   --card-hover:rgba(25,32,55,.7);
   --glass:rgba(255,255,255,.06);
-  --line:rgba(255,255,255,.08);
+  --line:rgba(255,255,255,.1);
   --text:#e5e7eb;
-  --muted:#9aa4b2;
+  --muted:#94a3b8;
   --brand:#4ca9ff;
   --brand2:#22d3ee;
   --grad:linear-gradient(135deg,var(--brand),var(--brand2));
-  --shadow-card:0 14px 40px rgba(0,0,0,.26);
+  --shadow-card:0 14px 40px rgba(0,0,0,.25);
   --shadow-lg:0 28px 80px rgba(0,0,0,.45);
 }
 
 [data-theme="light"]{
-  --bg:#f4f6fc;
-  --surface:rgba(255,255,255,.7);
+  --bg:#f5f7fb;
+  --surface:rgba(255,255,255,.75);
   --card:rgba(255,255,255,.55);
   --card-hover:#fff;
   --text:#0f172a;
   --muted:#475569;
-  --line:rgba(0,0,0,.08);
-  --glass:rgba(0,0,0,.04);
-  --shadow-card:0 10px 30px rgba(0,0,0,.15);
-  --shadow-lg:0 25px 60px rgba(0,0,0,.1);
+  --line:rgba(0,0,0,.09);
+  --shadow-card:0 12px 32px rgba(0,0,0,.15);
+  --shadow-lg:0 22px 50px rgba(0,0,0,.1);
 }
 
-*{box-sizing:border-box;}
-
+*{ box-sizing:border-box; }
 body{
   margin:0;
   font-family:Inter,system-ui,sans-serif;
@@ -67,7 +65,7 @@ body{
 }
 
 /* ============================================================
-                    LOGIN (GATE)
+                      LOGIN
 ============================================================ */
 #gate{
   position:fixed; inset:0; z-index:9999;
@@ -77,39 +75,40 @@ body{
 
 #gate .box{
   width:min(92vw,380px);
-  background:var(--surface);
-  border-radius:22px;
-  border:1px solid var(--line);
   padding:30px;
+  background:var(--surface);
+  border-radius:20px;
+  border:1px solid var(--line);
   text-align:center;
-  backdrop-filter:blur(24px) saturate(180%);
+  backdrop-filter:blur(22px) saturate(180%);
   box-shadow:var(--shadow-lg);
 }
 
 #gate input{
   width:100%; padding:12px;
-  border:1px solid var(--line);
   border-radius:12px;
+  border:1px solid var(--line);
   background:var(--glass);
   color:var(--text);
-  font-size:16px;
 }
 
 #gate button{
-  margin-top:12px; width:100%; padding:12px;
+  width:100%; padding:12px;
+  margin-top:12px;
+  border:none;
   background:var(--grad);
-  border:none; border-radius:14px;
-  color:#fff; font-weight:900;
+  color:#fff; font-weight:800;
+  border-radius:14px;
   cursor:pointer;
   box-shadow:var(--shadow-card);
 }
 
 /* ============================================================
-                    HEADER
+                      HEADER
 ============================================================ */
 header{
-  position:sticky; top:0; z-index:20;
-  backdrop-filter:blur(20px) saturate(130%);
+  position:sticky; top:0; z-index:50;
+  backdrop-filter:blur(20px);
   background:rgba(17,23,40,.45);
   border-bottom:1px solid var(--line);
 }
@@ -117,9 +116,9 @@ header{
 .head-wrap{
   max-width:1400px;
   margin:auto;
+  padding:16px 20px;
   display:flex;
   align-items:center;
-  padding:16px 20px;
 }
 
 .brand{
@@ -129,11 +128,20 @@ header{
 }
 
 .brand img{ height:46px; }
-
 .title{ font-size:22px; font-weight:800; }
 
+.icon-btn{
+  border:1px solid var(--line);
+  background:var(--glass);
+  padding:10px 14px;
+  border-radius:12px;
+  color:var(--text);
+  cursor:pointer;
+  font-weight:700;
+}
+
 /* ============================================================
-                    BUSCA + CHIPS
+                      BUSCA + CHIPS
 ============================================================ */
 .hero{
   max-width:1400px; margin:20px auto;
@@ -142,29 +150,30 @@ header{
 
 .search input{
   width:100%;
-  padding:14px 16px 14px 48px;
+  padding:14px 16px 14px 46px;
+  font-size:15px;
   border-radius:16px;
-  background:var(--glass);
   border:1px solid var(--line);
+  background:var(--glass);
   color:var(--text);
 }
 
 .magnify{
   position:absolute;
   left:16px; top:50%; transform:translateY(-50%);
-  font-size:18px; opacity:.6;
+  opacity:.7;
 }
 
 .chips{
-  margin-top:14px;
+  margin-top:16px;
   display:flex; gap:10px; flex-wrap:wrap;
 }
 
 .chip{
   padding:8px 16px;
-  background:var(--glass);
-  border:1px solid var(--line);
   border-radius:999px;
+  border:1px solid var(--line);
+  background:var(--glass);
   cursor:pointer;
   font-weight:700;
 }
@@ -176,54 +185,50 @@ header{
 }
 
 /* ============================================================
-                    GRID (3 CARDS POR LINHA NO CELULAR)
+                      GRID (AGORA 3 POR LINHA NO CELULAR!)
 ============================================================ */
-
 .grid{
   max-width:1400px;
   margin:30px auto;
   padding:0 20px;
   display:grid;
   grid-template-columns:repeat(12,1fr);
-  gap:18px;
+  gap:22px;
+}
+
+.card{
+  grid-column:span 3;
 }
 
 @media(max-width:1150px){
   .grid{ grid-template-columns:repeat(6,1fr); }
+  .card{ grid-column:span 2; }
 }
+
 @media(max-width:750px){
-  .grid{ grid-template-columns:repeat(3,1fr); }  /* AQUI: 3 POR LINHA */
+  .grid{ grid-template-columns:repeat(3,1fr); } /* 3 POR LINHA */
+  .card{ grid-column:span 1!important; }
 }
 
 /* ============================================================
-                    CARDS
+                      CARDS
 ============================================================ */
 .card{
-  grid-column:span 3;
   background:var(--card);
-  border:1px solid var(--line);
   border-radius:18px;
-  padding:18px;
-  display:flex; align-items:center; gap:14px;
-  color:var(--text);
+  padding:20px;
+  display:flex; gap:14px;
+  align-items:center;
   text-decoration:none;
-  backdrop-filter:blur(12px) saturate(160%);
-  transition:.28s;
+  color:var(--text);
+  border:1px solid var(--line);
   box-shadow:var(--shadow-card);
+  transition:.25s;
 }
 
 .card:hover{
   transform:translateY(-6px) scale(1.02);
   background:var(--card-hover);
-}
-
-.badge{
-  position:absolute;
-  right:10px; top:10px;
-  padding:4px 10px;
-  font-size:11px;
-  background:var(--glass);
-  border-radius:999px;
 }
 
 .icon{
@@ -232,27 +237,35 @@ header{
   background:var(--glass);
   display:grid; place-items:center;
   font-size:24px;
-  color:var(--brand2);
   border:1px solid var(--line);
+  color:var(--brand2);
+}
+
+.badge{
+  position:absolute;
+  right:12px; top:10px;
+  background:var(--glass);
+  border-radius:999px;
+  padding:5px 10px;
+  font-size:11px;
 }
 
 /* ============================================================
-                    FOOTER
+                      FOOTER
 ============================================================ */
 footer{
   text-align:center;
+  color:var(--muted);
   font-size:14px;
   margin:20px 0 40px;
-  color:var(--muted);
 }
 </style>
 
 </head>
-
 <body>
 
 <!-- ============================================================
-                    GATE (LOGIN)
+                    LOGIN
 ============================================================ -->
 <div id="gate">
   <div class="box">
@@ -261,7 +274,7 @@ footer{
     <p style="color:var(--muted)">Digite sua senha para continuar</p>
     <input id="pwdInput" type="password" placeholder="Senha">
     <button id="pwdBtn">Entrar</button>
-    <div id="pwdErr" style="color:#ff6b6b; display:none; margin-top:8px"></div>
+    <div id="pwdErr" style="color:#ff6b6b; display:none; margin-top:10px"></div>
   </div>
 </div>
 
@@ -279,146 +292,160 @@ footer{
 
     <div style="flex:1"></div>
 
-    <button id="themeToggle" class="icon-btn">🌓</button>
+    <button id="themeToggle" class="icon-btn">🌓 Tema</button>
   </div>
 </header>
 
 <section class="hero">
   <div style="position:relative;">
     <span class="magnify">🔍</span>
-    <input id="searchInput" type="search" placeholder="Buscar... (atalho /)">
+    <input id="searchInput" type="search" placeholder="Buscar... (atalho: / )">
   </div>
 
-  <div id="chips" class="chips">
+  <div class="chips" id="chips">
     <span class="chip active" data-cat="all">Todos</span>
     <span class="chip" data-cat="financeiro">Financeiro</span>
     <span class="chip" data-cat="vendas">Vendas</span>
     <span class="chip" data-cat="operacoes">Operações</span>
     <span class="chip" data-cat="qualidade">Qualidade</span>
-    <span class="chip" data-cat="relatorios">Relatórios</span>
+    <span class="chip" data-cat="relatórios">Relatórios</span>
   </div>
 </section>
 
 <!-- ============================================================
-                    GRID + CARDS
+                    GRID E CARDS
 ============================================================ -->
-<main id="grid" class="grid">
+<main class="grid" id="grid">
 
+  <!-- FINANCEIRO -->
   <a class="card" data-cat="financeiro" href="index.resumofinanceiro.html">
-    <div class="icon">📊</div>
-    <div><h3>Resumo Financeiro</h3><p style="color:var(--muted)">Consolidação diária</p></div>
+    <div class="icon">📈</div>
+    <div><h3>Resumo Financeiro</h3><p style="color:var(--muted); margin:0;">Entradas por categoria</p></div>
     <span class="badge">Financeiro</span>
   </a>
 
   <a class="card" data-cat="financeiro" href="index.conciliacao.html">
     <div class="icon">💳</div>
-    <div><h3>Conciliações</h3><p style="color:var(--muted)">Bandeiras e prazos</p></div>
+    <div><h3>Conciliações</h3><p style="color:var(--muted); margin:0;">Comparativo</p></div>
     <span class="badge">Financeiro</span>
   </a>
 
   <a class="card" data-cat="financeiro" href="index.cap.html">
     <div class="icon">🏦</div>
-    <div><h3>CAP</h3><p style="color:var(--muted)">Aprovação</p></div>
+    <div><h3>CAP</h3><p style="color:var(--muted); margin:0;">Pagamentos</p></div>
     <span class="badge">Financeiro</span>
   </a>
 
   <a class="card" data-cat="financeiro" href="index.meta.html">
     <div class="icon">🎯</div>
-    <div><h3>Meta de Faturamento</h3><p style="color:var(--muted)">Mensal por loja</p></div>
+    <div><h3>Meta de Faturamento</h3><p style="color:var(--muted); margin:0;">Faturamento mensal</p></div>
     <span class="badge">Financeiro</span>
   </a>
 
+  <!-- VENDAS -->
   <a class="card" data-cat="vendas" href="index.delivery.html">
     <div class="icon">🚚</div>
-    <div><h3>Delivery</h3><p style="color:var(--muted)">Canais e evolução</p></div>
+    <div><h3>Delivery</h3><p style="color:var(--muted); margin:0;">Canais e períodos</p></div>
     <span class="badge">Vendas</span>
   </a>
 
   <a class="card" data-cat="vendas" href="index.abc.html">
     <div class="icon">🅰️</div>
-    <div><h3>ABC</h3><p style="color:var(--muted)">Classe A/B/C</p></div>
+    <div><h3>ABC de Vendas</h3><p style="color:var(--muted); margin:0;">Classe A/B/C</p></div>
     <span class="badge">Vendas</span>
   </a>
 
+  <!-- OPERAÇÕES -->
   <a class="card" data-cat="operacoes" href="index.travas.html">
     <div class="icon">🔒</div>
-    <div><h3>Travas</h3><p style="color:var(--muted)">Bloqueios</p></div>
+    <div><h3>Travas</h3><p style="color:var(--muted); margin:0;">Bloqueios</p></div>
     <span class="badge">Operações</span>
   </a>
 
   <a class="card" data-cat="operacoes" href="index.couvert.html">
     <div class="icon">🎤</div>
-    <div><h3>Couvert</h3><p style="color:var(--muted)">Pagamentos</p></div>
+    <div><h3>Couvert</h3><p style="color:var(--muted); margin:0;">Pagamentos</p></div>
     <span class="badge">Operações</span>
   </a>
 
   <a class="card" data-cat="operacoes" href="index.reservas.html">
     <div class="icon">📅</div>
-    <div><h3>Reservas</h3><p style="color:var(--muted)">Agenda</p></div>
+    <div><h3>Reservas</h3><p style="color:var(--muted); margin:0;">Agenda</p></div>
     <span class="badge">Operações</span>
   </a>
 
+  <!-- QUALIDADE -->
   <a class="card" data-cat="qualidade" href="index.cancelamentos.html">
     <div class="icon">❌</div>
-    <div><h3>Cancelamentos</h3><p style="color:var(--muted)">Impacto</p></div>
+    <div><h3>Cancelamentos</h3><p style="color:var(--muted); margin:0;">Impacto</p></div>
     <span class="badge">Qualidade</span>
   </a>
 
   <a class="card" data-cat="qualidade" href="index.avaliacoes.html">
     <div class="icon">⭐</div>
-    <div><h3>Avaliações</h3><p style="color:var(--muted)">Notas</p></div>
+    <div><h3>Avaliações</h3><p style="color:var(--muted); margin:0;">Notas e comentários</p></div>
     <span class="badge">Qualidade</span>
   </a>
 
-  <a class="card" data-cat="relatorios" href="index.relatorios.html">
-    <div class="icon">📑</div>
-    <div><h3>Relatórios</h3><p style="color:var(--muted)">Empresas</p></div>
+  <!-- RELATÓRIOS -->
+  <a class="card" data-cat="relatórios" href="index.relatorios.html">
+    <div class="icon">📄</div>
+    <div><h3>Relatórios</h3><p style="color:var(--muted); margin:0;">Empresas</p></div>
     <span class="badge">Relatórios</span>
   </a>
 
 </main>
 
 <footer>
-  © Grupo DV — Painéis 2025
+  © Grupo DV • Painéis 2025
 </footer>
 
 </div>
 
 <!-- ============================================================
-                    JS DE FILTRO + TEMA + LOGIN
+                      SCRIPTS
 ============================================================ -->
 <script>
 /* Login */
 (function(){
-  const KEY='dv_pwd';
+  const KEY="dv_pwd";
 
-  async function tryUnlock(pwd){
+  async function login(pwd){
     if(!pwd) return false;
     localStorage.setItem(KEY,pwd);
     return true;
   }
 
-  async function initGate(){
-    const gate=document.getElementById('gate');
-    const app=document.getElementById('app');
-    const input=document.getElementById('pwdInput');
-    const err=document.getElementById('pwdErr');
-
-    async function submit(){
-      err.style.display='none';
-      const ok=await tryUnlock(input.value.trim());
-      if(ok){ gate.style.display='none'; app.hidden=false; }
-      else{ err.style.display='block'; }
+  async function open(){
+    const saved=localStorage.getItem(KEY);
+    if(saved){
+      document.getElementById("gate").style.display="none";
+      document.getElementById("app").hidden=false;
+      return;
     }
 
-    document.getElementById('pwdBtn').onclick=submit;
-    input.onkeydown=e=>{ if(e.key==="Enter") submit(); };
+    const gate=document.getElementById("gate");
+    const app=document.getElementById("app");
+    const input=document.getElementById("pwdInput");
+    const err=document.getElementById("pwdErr");
 
-    const saved=localStorage.getItem(KEY);
-    if(saved){ gate.style.display='none'; app.hidden=false; }
+    function submit(){
+      err.style.display="none";
+      login(input.value.trim()).then(ok=>{
+        if(ok){
+          gate.style.display="none";
+          app.hidden=false;
+        } else {
+          err.style.display="block";
+        }
+      });
+    }
+
+    document.getElementById("pwdBtn").onclick=submit;
+    input.onkeydown=e=>{ if(e.key==="Enter") submit(); };
   }
 
-  window.addEventListener('DOMContentLoaded',initGate);
+  window.onload=open;
 })();
 
 /* Tema */
@@ -431,35 +458,36 @@ document.getElementById("themeToggle").onclick=()=>{
 };
 
 /* Filtros */
-const cards=[...document.querySelectorAll('.card')];
-const search=document.getElementById('searchInput');
+const searchInput=document.getElementById('searchInput');
 const chips=document.getElementById('chips');
-let activeCat='all';
+const cards=[...document.querySelectorAll('.card')];
+let activeCat="all";
 
 function applyFilters(){
-  const q=search.value.toLowerCase();
-  cards.forEach(c=>{
-    const cat=c.getAttribute('data-cat');
-    const txt=c.innerText.toLowerCase();
-    const visible=(activeCat==='all'||cat===activeCat) && txt.includes(q);
-    c.style.display=visible?'':'none';
+  const q=searchInput.value.toLowerCase();
+  cards.forEach(card=>{
+    const cat=card.dataset.cat;
+    const show=(activeCat==="all"||cat===activeCat) && card.innerText.toLowerCase().includes(q);
+    card.style.display=show?"":"none";
   });
 }
 
 chips.onclick=e=>{
-  const item=e.target.closest('.chip');
-  if(!item) return;
-  chips.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
-  item.classList.add('active');
-  activeCat=item.dataset.cat;
+  const chip=e.target.closest(".chip");
+  if(!chip) return;
+  chips.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));
+  chip.classList.add("active");
+  activeCat=chip.dataset.cat;
   applyFilters();
 };
-search.oninput=applyFilters;
 
-/* Atalho "/" */
+searchInput.oninput=applyFilters;
+
+/* Atalho / */
 window.onkeydown=e=>{
-  if(e.key==='/' && document.activeElement!==search){
-    e.preventDefault(); search.focus();
+  if(e.key==="/" && document.activeElement!==searchInput){
+    e.preventDefault();
+    searchInput.focus();
   }
 };
 </script>
