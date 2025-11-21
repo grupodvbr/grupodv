@@ -5,59 +5,74 @@
   <title>Análise Financeira - Grupo DV</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <!-- ICONES -->
-  <link rel="apple-touch-icon" sizes="180x180" href="https://github.com/ClenaStore/grupodv/blob/main/paste/Financeiro.png?raw=true">
-  <link rel="icon" type="image/png" sizes="32x32" href="https://github.com/ClenaStore/grupodv/blob/main/paste/Financeiro.png?raw=true">
-  <link rel="icon" type="image/png" sizes="16x16" href="https://github.com/ClenaStore/grupodv/blob/main/paste/Financeiro.png?raw=true">
+<!-- ============================================================
+        SINCRONIZAÇÃO DE TEMA EM TODAS AS PÁGINAS
+============================================================ -->
+<script>
+(function(){
+  const saved = localStorage.getItem('dv_theme');
+  if(saved){
+    document.documentElement.setAttribute('data-theme', saved);
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
 
-  <style>
+<!-- ICONES -->
+<link rel="apple-touch-icon" sizes="180x180" href="https://github.com/ClenaStore/grupodv/blob/main/paste/Financeiro.png?raw=true">
+<link rel="icon" type="image/png" sizes="32x32" href="https://github.com/ClenaStore/grupodv/blob/main/paste/Financeiro.png?raw=true">
+<link rel="icon" type="image/png" sizes="16x16" href="https://github.com/ClenaStore/grupodv/blob/main/paste/Financeiro.png?raw=true">
+
+<style>
 /* ============================================================
-                       TEMA + PALETA
+                    TEMA + PALETA
 ============================================================ */
 :root{
-  --bg: #0b1120; 
-  --surface: rgba(17, 25, 40, 0.75);
-  --card: rgba(20,25,45,0.55);
-  --card-hover: rgba(25,32,55,0.7);
-  --glass: rgba(255,255,255,0.06);
-  --line: rgba(255,255,255,0.08);
-  --text: #e8ecf2;
-  --muted: #9aa4b2;
-  --brand: #4ca9ff;
-  --brand2: #22d3ee;
-  --brand3: #7dd3fc;
-  --grad: linear-gradient(135deg, var(--brand), var(--brand2));
-  --shadow-lg: 0 28px 80px rgba(0,0,0,.45);
-  --shadow-card: 0 14px 40px rgba(0,0,0,.28);
+  --bg:#0b1120;
+  --surface:rgba(17,25,40,.65);
+  --card:rgba(20,25,45,.55);
+  --card-hover:rgba(25,32,55,.7);
+  --glass:rgba(255,255,255,.06);
+  --line:rgba(255,255,255,.08);
+  --text:#e5e7eb;
+  --muted:#9aa4b2;
+  --brand:#4ca9ff;
+  --brand2:#22d3ee;
+  --grad:linear-gradient(135deg,var(--brand),var(--brand2));
+  --shadow-card:0 14px 40px rgba(0,0,0,.26);
+  --shadow-lg:0 28px 80px rgba(0,0,0,.45);
 }
 
 [data-theme="light"]{
-  --bg: #f3f6fc;
-  --surface: rgba(255,255,255,0.75);
-  --card: rgba(255,255,255,0.6);
-  --card-hover: rgba(255,255,255,0.95);
-  --text: #111827;
-  --muted: #475569;
-  --line: rgba(0,0,0,0.06);
-  --shadow-lg: 0 28px 80px rgba(0,0,0,.12);
-  --shadow-card: 0 10px 28px rgba(0,0,0,.16);
+  --bg:#f4f6fc;
+  --surface:rgba(255,255,255,.7);
+  --card:rgba(255,255,255,.55);
+  --card-hover:#fff;
+  --text:#0f172a;
+  --muted:#475569;
+  --line:rgba(0,0,0,.08);
+  --glass:rgba(0,0,0,.04);
+  --shadow-card:0 10px 30px rgba(0,0,0,.15);
+  --shadow-lg:0 25px 60px rgba(0,0,0,.1);
 }
 
 *{box-sizing:border-box;}
+
 body{
   margin:0;
-  font-family: Inter, system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  font-family:Inter,system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
 
 /* ============================================================
-                         LOGIN (GATE)
+                    LOGIN (GATE)
 ============================================================ */
 #gate{
-  position:fixed; inset:0; display:flex;
-  align-items:center; justify-content:center;
-  background:var(--bg); z-index:9999;
+  position:fixed; inset:0; z-index:9999;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--bg);
 }
 
 #gate .box{
@@ -66,121 +81,83 @@ body{
   border-radius:22px;
   border:1px solid var(--line);
   padding:30px;
-  backdrop-filter:blur(30px) saturate(160%);
-  box-shadow:var(--shadow-lg);
-  animation:fadeIn .4s ease;
   text-align:center;
+  backdrop-filter:blur(24px) saturate(180%);
+  box-shadow:var(--shadow-lg);
 }
 
 #gate input{
   width:100%; padding:12px;
-  background:var(--glass);
   border:1px solid var(--line);
   border-radius:12px;
+  background:var(--glass);
   color:var(--text);
   font-size:16px;
-  transition:.25s;
-}
-#gate input:focus{
-  border-color:var(--brand);
-  box-shadow:0 0 0 3px rgba(76,169,255,.35);
 }
 
 #gate button{
-  width:100%; margin-top:12px; padding:12px;
-  border:none; border-radius:14px;
+  margin-top:12px; width:100%; padding:12px;
   background:var(--grad);
-  color:#fff; font-weight:800;
-  cursor:pointer; transition:.25s;
+  border:none; border-radius:14px;
+  color:#fff; font-weight:900;
+  cursor:pointer;
   box-shadow:var(--shadow-card);
-}
-#gate button:hover{
-  transform:translateY(-3px);
-  box-shadow: 0 14px 40px rgba(0,0,0,.35);
 }
 
 /* ============================================================
-                         HEADER PREMIUM
+                    HEADER
 ============================================================ */
 header{
   position:sticky; top:0; z-index:20;
-  backdrop-filter:blur(25px) saturate(180%);
-  background:rgba(17,23,40,0.45);
+  backdrop-filter:blur(20px) saturate(130%);
+  background:rgba(17,23,40,.45);
   border-bottom:1px solid var(--line);
-  box-shadow:0 6px 18px rgba(0,0,0,.18);
 }
 
 .head-wrap{
-  max-width:1400px; margin:auto;
-  display:flex; align-items:center;
+  max-width:1400px;
+  margin:auto;
+  display:flex;
+  align-items:center;
   padding:16px 20px;
 }
 
 .brand{
   display:flex; align-items:center; gap:12px;
-  text-decoration:none; color:var(--text);
-}
-.brand img{ height:48px; }
-.title{ font-size:24px; font-weight:900; letter-spacing:.3px; }
-
-.icon-btn{
-  border:1px solid var(--line);
-  background:var(--glass);
   color:var(--text);
-  padding:10px 16px;
-  border-radius:12px;
-  font-weight:700;
-  cursor:pointer;
-  transition:.25s;
-  display:flex; align-items:center; gap:10px;
-}
-.icon-btn:hover{
-  background:var(--grad);
-  color:#fff;
-  box-shadow:var(--shadow-card);
-  transform:translateY(-3px);
+  text-decoration:none;
 }
 
-.user-btn img{
-  width:40px; height:40px;
-  border-radius:50%;
-  border:2px solid var(--line);
-}
+.brand img{ height:46px; }
+
+.title{ font-size:22px; font-weight:800; }
 
 /* ============================================================
-                        HERO + BUSCA
+                    BUSCA + CHIPS
 ============================================================ */
 .hero{
-  max-width:1400px; margin:20px auto 0;
+  max-width:1400px; margin:20px auto;
   padding:0 20px;
-}
-.hero h2{
-  font-size:18px; color:var(--muted);
 }
 
 .search input{
   width:100%;
   padding:14px 16px 14px 48px;
-  font-size:16px;
+  border-radius:16px;
   background:var(--glass);
   border:1px solid var(--line);
-  border-radius:16px;
-  transition:.25s;
-}
-.search input:focus{
-  border-color:var(--brand);
-  box-shadow:0 0 0 3px rgba(76,169,255,.35);
+  color:var(--text);
 }
 
 .magnify{
   position:absolute;
-  left:14px; top:50%; transform:translateY(-50%);
-  font-size:18px; opacity:.65;
+  left:16px; top:50%; transform:translateY(-50%);
+  font-size:18px; opacity:.6;
 }
 
 .chips{
+  margin-top:14px;
   display:flex; gap:10px; flex-wrap:wrap;
-  margin-top:12px;
 }
 
 .chip{
@@ -188,14 +165,8 @@ header{
   background:var(--glass);
   border:1px solid var(--line);
   border-radius:999px;
-  font-weight:700;
   cursor:pointer;
-  transition:.25s;
-}
-
-.chip:hover{
-  transform:translateY(-3px);
-  box-shadow:var(--shadow-card);
+  font-weight:700;
 }
 
 .chip.active{
@@ -205,162 +176,97 @@ header{
 }
 
 /* ============================================================
-                          GRID PREMIUM
+                    GRID (3 CARDS POR LINHA NO CELULAR)
 ============================================================ */
+
 .grid{
   max-width:1400px;
   margin:30px auto;
   padding:0 20px;
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:22px;
+  grid-template-columns:repeat(12,1fr);
+  gap:18px;
+}
+
+@media(max-width:1150px){
+  .grid{ grid-template-columns:repeat(6,1fr); }
+}
+@media(max-width:750px){
+  .grid{ grid-template-columns:repeat(3,1fr); }  /* AQUI: 3 POR LINHA */
 }
 
 /* ============================================================
-                         CARDS 3D PREMIUM
+                    CARDS
 ============================================================ */
 .card{
+  grid-column:span 3;
   background:var(--card);
   border:1px solid var(--line);
-  border-radius:20px;
-  padding:22px;
+  border-radius:18px;
+  padding:18px;
   display:flex; align-items:center; gap:14px;
-  position:relative;
-  backdrop-filter:blur(20px) saturate(180%);
-  box-shadow:var(--shadow-card);
-  text-decoration:none;
   color:var(--text);
-  transition:.3s ease;
+  text-decoration:none;
+  backdrop-filter:blur(12px) saturate(160%);
+  transition:.28s;
+  box-shadow:var(--shadow-card);
 }
 
 .card:hover{
   transform:translateY(-6px) scale(1.02);
   background:var(--card-hover);
-  box-shadow:var(--shadow-lg);
-}
-
-.card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(120deg, transparent 65%, rgba(76,169,255,.15));
-  opacity:0;
-  transition:.35s;
-}
-.card:hover::after{opacity:1;}
-
-.card .icon{
-  width:55px; height:55px;
-  background:var(--glass);
-  border-radius:16px;
-  display:grid; place-items:center;
-  font-size:26px;
-  border:1px solid var(--line);
-  color:var(--brand2);
-  box-shadow:inset 0 0 0 1px var(--line);
 }
 
 .badge{
-  position:absolute; top:12px; right:12px;
-  padding:6px 10px;
-  font-size:11px; font-weight:700;
+  position:absolute;
+  right:10px; top:10px;
+  padding:4px 10px;
+  font-size:11px;
   background:var(--glass);
   border-radius:999px;
+}
+
+.icon{
+  width:52px; height:52px;
+  border-radius:16px;
+  background:var(--glass);
+  display:grid; place-items:center;
+  font-size:24px;
+  color:var(--brand2);
   border:1px solid var(--line);
 }
 
 /* ============================================================
-                         FOOTER
+                    FOOTER
 ============================================================ */
 footer{
-  max-width:1400px; margin:auto;
-  padding:20px;
-  color:var(--muted);
   text-align:center;
   font-size:14px;
+  margin:20px 0 40px;
+  color:var(--muted);
 }
+</style>
 
-@keyframes fadeIn{
-  from{opacity:0; transform:translateY(15px);}
-  to{opacity:1; transform:none;}
-}
-  </style>
-
-  <script>
-/* ============================================================
-                   LOGICA DE SENHA (MANTIDA)
-============================================================ */
-(function(){
-  const KEY='dv_pwd';
-  const _f=window.fetch.bind(window);
-
-  window.fetch=(input,init={})=>{
-    const url=typeof input==="string"?input:(input&&input.url)||'';
-    const headers=new Headers(init.headers||((typeof input!=="string"&&input.headers)||{}));
-    const pwd=localStorage.getItem(KEY)||'';
-    if(url.startsWith('/api/') && pwd) headers.set('x-api-key',pwd);
-    return _f(input,Object.assign({},init,{headers}));
-  };
-
-  async function tryUnlockWith(pwd){
-    if(!pwd) return false;
-    try{
-      const r=await fetch('/api/ping',{headers:{'x-api-key':pwd}});
-      if(r.ok){ localStorage.setItem(KEY,pwd); return true; }
-      return false;
-    }catch{
-      localStorage.setItem(KEY,pwd);
-      return true;
-    }
-  }
-
-  async function ensureGate(){
-    const gate=document.getElementById('gate');
-    const app=document.getElementById('app');
-    const input=document.getElementById('pwdInput');
-    const err=document.getElementById('pwdErr');
-
-    async function submit(){
-      err.style.display='none';
-      const ok=await tryUnlockWith(input.value.trim());
-      if(ok){ gate.style.display='none'; app.hidden=false; }
-      else{ err.textContent='Senha incorreta.'; err.style.display='block'; }
-    }
-
-    document.getElementById('pwdBtn').addEventListener('click',submit);
-    input.addEventListener('keydown',e=>{ if(e.key==='Enter') submit(); });
-
-    const saved=localStorage.getItem(KEY);
-    if(saved){ 
-      const unlocked=await tryUnlockWith(saved);
-      if(unlocked){ gate.style.display='none'; app.hidden=false; return; }
-    }
-    gate.style.display='flex';
-  }
-
-  window.addEventListener('DOMContentLoaded',ensureGate);
-})();
-  </script>
 </head>
 
 <body>
 
 <!-- ============================================================
-                           LOGIN
+                    GATE (LOGIN)
 ============================================================ -->
 <div id="gate">
   <div class="box">
-    <img src="https://github.com/ClenaStore/grupodv/blob/main/paste/Financeiro.png?raw=true" width="85">
-    <h1 style="margin:10px 0">Grupo DV</h1>
-    <p style="color:var(--muted); margin-bottom:14px;">Digite sua senha para entrar</p>
+    <img src="https://github.com/ClenaStore/grupodv/blob/main/paste/Financeiro.png?raw=true" width="80">
+    <h2>Grupo DV</h2>
+    <p style="color:var(--muted)">Digite sua senha para continuar</p>
     <input id="pwdInput" type="password" placeholder="Senha">
     <button id="pwdBtn">Entrar</button>
-    <div id="pwdErr" style="color:#ff6b6b; margin-top:10px; display:none"></div>
+    <div id="pwdErr" style="color:#ff6b6b; display:none; margin-top:8px"></div>
   </div>
 </div>
 
 <!-- ============================================================
-                           APLICATIVO
+                    APP
 ============================================================ -->
 <div id="app" hidden>
 
@@ -370,20 +276,20 @@ footer{
       <img src="https://github.com/ClenaStore/grupodv/blob/main/paste/Financeiro.png?raw=true">
       <div class="title">Análise Financeira</div>
     </a>
+
     <div style="flex:1"></div>
-    <button id="themeToggle" class="icon-btn">🌓 Tema</button>
+
+    <button id="themeToggle" class="icon-btn">🌓</button>
   </div>
 </header>
 
 <section class="hero">
-  <h2>Selecione um painel ou pesquise</h2>
-
-  <div class="search" style="position:relative; margin-top:14px;">
+  <div style="position:relative;">
     <span class="magnify">🔍</span>
-    <input id="searchInput" type="search" placeholder="Buscar... (atalho: / )">
+    <input id="searchInput" type="search" placeholder="Buscar... (atalho /)">
   </div>
 
-  <div class="chips" id="chips">
+  <div id="chips" class="chips">
     <span class="chip active" data-cat="all">Todos</span>
     <span class="chip" data-cat="financeiro">Financeiro</span>
     <span class="chip" data-cat="vendas">Vendas</span>
@@ -394,134 +300,167 @@ footer{
 </section>
 
 <!-- ============================================================
-                         CARDS / GRID
+                    GRID + CARDS
 ============================================================ -->
-<main class="grid" id="grid">
+<main id="grid" class="grid">
 
-  <!-- FINANCEIRO -->
   <a class="card" data-cat="financeiro" href="index.resumofinanceiro.html">
     <div class="icon">📊</div>
-    <div><h3>Resumo Financeiro</h3><p style="color:var(--muted)">Consolidação diária e categorias</p></div>
+    <div><h3>Resumo Financeiro</h3><p style="color:var(--muted)">Consolidação diária</p></div>
     <span class="badge">Financeiro</span>
   </a>
 
   <a class="card" data-cat="financeiro" href="index.conciliacao.html">
     <div class="icon">💳</div>
-    <div><h3>Conciliações</h3><p style="color:var(--muted)">Comparativo de bandeiras</p></div>
+    <div><h3>Conciliações</h3><p style="color:var(--muted)">Bandeiras e prazos</p></div>
     <span class="badge">Financeiro</span>
   </a>
 
   <a class="card" data-cat="financeiro" href="index.cap.html">
     <div class="icon">🏦</div>
-    <div><h3>CAP</h3><p style="color:var(--muted)">Aprovação de pagamentos</p></div>
+    <div><h3>CAP</h3><p style="color:var(--muted)">Aprovação</p></div>
     <span class="badge">Financeiro</span>
   </a>
 
   <a class="card" data-cat="financeiro" href="index.meta.html">
     <div class="icon">🎯</div>
-    <div><h3>Meta de Faturamento</h3><p style="color:var(--muted)">Acompanhamento mensal</p></div>
+    <div><h3>Meta de Faturamento</h3><p style="color:var(--muted)">Mensal por loja</p></div>
     <span class="badge">Financeiro</span>
   </a>
 
-  <!-- VENDAS -->
   <a class="card" data-cat="vendas" href="index.delivery.html">
     <div class="icon">🚚</div>
-    <div><h3>Vendas Delivery</h3><p style="color:var(--muted)">Canais e períodos</p></div>
+    <div><h3>Delivery</h3><p style="color:var(--muted)">Canais e evolução</p></div>
     <span class="badge">Vendas</span>
   </a>
 
   <a class="card" data-cat="vendas" href="index.abc.html">
     <div class="icon">🅰️</div>
-    <div><h3>ABC de Vendas</h3><p style="color:var(--muted)">Classe A/B/C e evolução</p></div>
+    <div><h3>ABC</h3><p style="color:var(--muted)">Classe A/B/C</p></div>
     <span class="badge">Vendas</span>
   </a>
 
-  <!-- OPERAÇÕES -->
   <a class="card" data-cat="operacoes" href="index.travas.html">
     <div class="icon">🔒</div>
-    <div><h3>Travas</h3><p style="color:var(--muted)">Regras operacionais</p></div>
+    <div><h3>Travas</h3><p style="color:var(--muted)">Bloqueios</p></div>
     <span class="badge">Operações</span>
   </a>
 
   <a class="card" data-cat="operacoes" href="index.couvert.html">
     <div class="icon">🎤</div>
-    <div><h3>Couvert</h3><p style="color:var(--muted)">Arrecadação e pagamentos</p></div>
+    <div><h3>Couvert</h3><p style="color:var(--muted)">Pagamentos</p></div>
     <span class="badge">Operações</span>
   </a>
 
   <a class="card" data-cat="operacoes" href="index.reservas.html">
     <div class="icon">📅</div>
-    <div><h3>Reservas</h3><p style="color:var(--muted)">Agenda e capacidade</p></div>
+    <div><h3>Reservas</h3><p style="color:var(--muted)">Agenda</p></div>
     <span class="badge">Operações</span>
   </a>
 
-  <!-- QUALIDADE -->
   <a class="card" data-cat="qualidade" href="index.cancelamentos.html">
     <div class="icon">❌</div>
-    <div><h3>Cancelamentos</h3><p style="color:var(--muted)">Motivos e impacto</p></div>
+    <div><h3>Cancelamentos</h3><p style="color:var(--muted)">Impacto</p></div>
     <span class="badge">Qualidade</span>
   </a>
 
   <a class="card" data-cat="qualidade" href="index.avaliacoes.html">
     <div class="icon">⭐</div>
-    <div><h3>Avaliações</h3><p style="color:var(--muted)">Notas e comentários</p></div>
+    <div><h3>Avaliações</h3><p style="color:var(--muted)">Notas</p></div>
     <span class="badge">Qualidade</span>
   </a>
 
-  <!-- RELATORIOS -->
   <a class="card" data-cat="relatorios" href="index.relatorios.html">
     <div class="icon">📑</div>
-    <div><h3>Relatórios</h3><p style="color:var(--muted)">Relatórios gerais</p></div>
+    <div><h3>Relatórios</h3><p style="color:var(--muted)">Empresas</p></div>
     <span class="badge">Relatórios</span>
   </a>
 
 </main>
 
-<footer>© Grupo DV — Painéis 2025</footer>
+<footer>
+  © Grupo DV — Painéis 2025
+</footer>
 
 </div>
 
 <!-- ============================================================
-                        FILTROS + TEMA
+                    JS DE FILTRO + TEMA + LOGIN
 ============================================================ -->
 <script>
-const searchInput=document.getElementById('searchInput');
+/* Login */
+(function(){
+  const KEY='dv_pwd';
+
+  async function tryUnlock(pwd){
+    if(!pwd) return false;
+    localStorage.setItem(KEY,pwd);
+    return true;
+  }
+
+  async function initGate(){
+    const gate=document.getElementById('gate');
+    const app=document.getElementById('app');
+    const input=document.getElementById('pwdInput');
+    const err=document.getElementById('pwdErr');
+
+    async function submit(){
+      err.style.display='none';
+      const ok=await tryUnlock(input.value.trim());
+      if(ok){ gate.style.display='none'; app.hidden=false; }
+      else{ err.style.display='block'; }
+    }
+
+    document.getElementById('pwdBtn').onclick=submit;
+    input.onkeydown=e=>{ if(e.key==="Enter") submit(); };
+
+    const saved=localStorage.getItem(KEY);
+    if(saved){ gate.style.display='none'; app.hidden=false; }
+  }
+
+  window.addEventListener('DOMContentLoaded',initGate);
+})();
+
+/* Tema */
+document.getElementById("themeToggle").onclick=()=>{
+  const root=document.documentElement;
+  const cur=root.getAttribute("data-theme");
+  const next=cur==="dark"?"light":"dark";
+  root.setAttribute("data-theme",next);
+  localStorage.setItem("dv_theme",next);
+};
+
+/* Filtros */
+const cards=[...document.querySelectorAll('.card')];
+const search=document.getElementById('searchInput');
 const chips=document.getElementById('chips');
-const cards=Array.from(document.querySelectorAll('.card'));
 let activeCat='all';
 
 function applyFilters(){
-  const q=searchInput.value.toLowerCase().trim();
-  cards.forEach(card=>{
-    const cat=card.getAttribute('data-cat');
-    const matchCat=(activeCat==='all' || cat===activeCat);
-    const matchText=card.innerText.toLowerCase().includes(q);
-    card.style.display=(matchCat && matchText)?'':'none';
+  const q=search.value.toLowerCase();
+  cards.forEach(c=>{
+    const cat=c.getAttribute('data-cat');
+    const txt=c.innerText.toLowerCase();
+    const visible=(activeCat==='all'||cat===activeCat) && txt.includes(q);
+    c.style.display=visible?'':'none';
   });
 }
 
-chips.addEventListener('click',e=>{
-  const c=e.target.closest('.chip');
-  if(!c) return;
-  chips.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
-  c.classList.add('active');
-  activeCat=c.getAttribute('data-cat');
+chips.onclick=e=>{
+  const item=e.target.closest('.chip');
+  if(!item) return;
+  chips.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  item.classList.add('active');
+  activeCat=item.dataset.cat;
   applyFilters();
-});
+};
+search.oninput=applyFilters;
 
-searchInput.addEventListener('input', applyFilters);
-
-window.addEventListener('keydown', e=>{
-  if(e.key==='/' && document.activeElement!==searchInput){
-    e.preventDefault(); searchInput.focus();
+/* Atalho "/" */
+window.onkeydown=e=>{
+  if(e.key==='/' && document.activeElement!==search){
+    e.preventDefault(); search.focus();
   }
-});
-
-document.getElementById("themeToggle").onclick=()=>{
-  const root=document.documentElement;
-  const t=root.getAttribute("data-theme");
-  const next=t==="dark"?"light":"dark";
-  root.setAttribute("data-theme",next);
 };
 </script>
 
